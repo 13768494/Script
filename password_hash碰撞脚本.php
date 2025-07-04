@@ -3,7 +3,7 @@
 $targetHash = '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2'; // 示例密文
 
 // 使用正斜杠修改文件路径
-$passwordsFile = "D:/Tools/2-字典/常用密码.txt";  // 确保路径正确
+$passwordsFile = "";  // 确保字典路径正确
 
 // 检查文件是否存在
 if (!file_exists($passwordsFile)) {
