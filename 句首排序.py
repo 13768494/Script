@@ -1,3 +1,4 @@
+# 考试时可方便查找题目答案
 with open("text.txt", "r", encoding="utf-8") as f:
     text = f.readlines()
 f.close()
