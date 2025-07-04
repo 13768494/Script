@@ -7,11 +7,9 @@ head = get_m3u8_url.split("gzc")[0]
 res = requests.get(get_m3u8_url)
 m3u8_ts = re.sub("#E.*","",res.text).strip().split("\n")
 
-# with open("video.ts","wb")as f:
-#     for i in tqdm(m3u8_ts):
-#         if i != "":
-#             res = requests.get(head + i).content
-#             f.write(res)
-# f.close()
-
-print(res.text)
+with open("video.ts","wb")as f:
+    for i in tqdm(m3u8_ts):
+        if i != "":
+            res = requests.get(head + i).content
+            f.write(res)
+f.close()
