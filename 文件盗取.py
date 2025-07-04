@@ -9,6 +9,11 @@ U = GetLogicalDriveStrings()
 U_list = U.split('\x00')
 U_list.pop(-1)
 
+# for UP in U_list:
+#     if GetDriveType(UP) == 2:   # 不同盘符类型：https://learn.microsoft.com/zh-cn/windows/win32/api/fileapi/nf-fileapi-getdrivetypea
+#         break
+# print(f"检测到目标盘:{UP}")
+
 path = ".\\save\\"
 if not os.path.exists(path):
     os.makedirs(path)
