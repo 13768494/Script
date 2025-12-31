@@ -1,0 +1,5 @@
+pyinstaller -F -w -i snake.ico --add-data "circle.png;." gluttonous.py
+
+python -m nuitka --onefile --windows-disable-console --windows-icon-from-ico=snake.ico --include-data-files="*.png=./" gluttonous.py
+
+https://github.com/crossin/gluttonous
